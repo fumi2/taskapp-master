@@ -32,9 +32,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //選択時の動作
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         
-        //self.selectedCategoryId = categoryArray[row].id
-        self.taskArray = self.realm.objects(Task.self).filter("category = %@", categoryArray[row].id).sorted(byKeyPath: "date", ascending: false)
-        self.tableView.reloadData()
+        if self.categoryArray.count != 0 {
+            self.taskArray = self.realm.objects(Task.self).filter("category = %@", categoryArray[row].id).sorted(byKeyPath: "date", ascending: false)
+            self.tableView.reloadData()
+        }
+        
     }
     
     
